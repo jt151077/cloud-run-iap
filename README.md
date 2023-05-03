@@ -6,7 +6,7 @@ Source for HTTP(S) Load Balancer with Cloud Run: [https://cloud.google.com/load-
 
 ## Overall architecture
 
-![](imgs/0.png)
+![](imgs/2.png)
 
 
 ## Project structure
