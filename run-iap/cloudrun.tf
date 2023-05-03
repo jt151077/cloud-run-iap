@@ -32,7 +32,7 @@ resource "google_project_iam_member" "run_logs_writer" {
 }
 
 resource "google_cloud_run_service" "run" {
-  name     = "run-srv"
+  name     = var.run_service_id
   project  = var.project_id
   location = var.project_default_region
 
@@ -59,7 +59,10 @@ resource "google_cloud_run_service" "run" {
     ignore_changes = [
       template[0].spec[0].containers[0].image,
       template[0].spec[0].service_account_name,
-      metadata[0].annotations["run.googleapis.com/operation-id"]
+      metadata[0].annotations["run.googleapis.com/operation-id"],
+      metadata[0].annotations["client.knative.dev/user-image"],
+      metadata[0].annotations["run.googleapis.com/client-name"],
+      metadata[0].annotations["run.googleapis.com/client-version"]
     ]
   }
 

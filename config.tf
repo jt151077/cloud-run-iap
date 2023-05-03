@@ -42,7 +42,7 @@ resource "google_project_service" "gcp_services" {
 
 terraform {
   backend "gcs" {
-    bucket = "YOUR_PROJECT_ID-terraform-state"
+    bucket = "jeremy-6ili0yxz-terraform-state"
     prefix = "terraform/state"
   }
 

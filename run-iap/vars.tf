@@ -27,6 +27,10 @@ variable "iap_authorised_users" {
 }
 
 variable "default_run_image" {
-  type = string
+  type    = string
   default = "nginx:latest"
+}
+
+variable "run_service_id" {
+  type = string
 }

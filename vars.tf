@@ -17,3 +17,7 @@ variable "iap_brand_support_email" {
 variable "domain" {
   type = string
 }
+
+variable "run_service_id" {
+  type = string
+}

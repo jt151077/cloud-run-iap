@@ -30,4 +30,5 @@ module "run-container" {
   iap_authorised_users = [
     "user:${local.iap_brand_support_email}",
   ]
+  run_service_id = var.run_service_id
 }
