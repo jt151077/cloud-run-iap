@@ -1,7 +1,7 @@
 # Cloud Run with IAP
 Simple Cloud Run deployment using Terraform, CloudBuild, Artifact Registry and protected with IAP
 
-Source for HTTP(S) Load Balancer with Cloud Run: [https://cloud.google.com/load-balancing/docs/https/ext-http-lb-tf-module-examples#with_a_backend](https://cloud.google.com/load-balancing/docs/https/ext-http-lb-tf-module-examples#with_a_backend)
+Source for enabling IAP with Cloud Run: [https://cloud.google.com/iap/docs/enabling-cloud-run](https://cloud.google.com/iap/docs/enabling-cloud-run)
 
 
 ## Overall architecture
