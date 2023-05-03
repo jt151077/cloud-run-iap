@@ -40,7 +40,7 @@ find . -type f -not -path '*/\.*' -exec sed -i 's/YOUR_PROJECT_NMR/your_project_
 find . -type f -not -path '*/\.*' -exec sed -i 's/YOUR_PROJECT_ID/your_project_id/g' {} +
 find . -type f -not -path '*/\.*' -exec sed -i 's/YOUR_PROJECT_REGION/your_project_region/g' {} +
 find . -type f -not -path '*/\.*' -exec sed -i 's/YOUR_IAP_SUPPORT_EMAIL/your_iap_email/g' {} +
-find . -type f -not -path '*/\.*' -exec sed -i 's/DOMAIN/YOUR_DOMAIN/g' {} +
+find . -type f -not -path '*/\.*' -exec sed -i 's/YOUR_DOMAIN/your_domain/g' {} +
 ```
 
 ## Install
