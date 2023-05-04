@@ -41,11 +41,6 @@ resource "google_project_service" "gcp_services" {
 }
 
 terraform {
-  backend "gcs" {
-    bucket = "jeremy-6ili0yxz-terraform-state"
-    prefix = "terraform/state"
-  }
-
   required_version = ">= 1.4.6"
 
   required_providers {
