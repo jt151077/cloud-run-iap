@@ -17,6 +17,15 @@ variable "iap_brand_support_email" {
 variable "domain" {
   type = string
 }
+/*
+variable "path_matcher" {
+  type = string
+}
+*/
+variable "default_run_image" {
+  type    = string
+  default = "nginx:latest"
+}
 
 variable "run_service_id" {
   type = string

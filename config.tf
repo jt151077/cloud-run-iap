@@ -41,7 +41,7 @@ resource "google_project_service" "gcp_services" {
 }
 
 terraform {
-  required_version = ">= 1.4.6"
+  required_version = ">= 1.5.1"
 
   required_providers {
     archive = {
@@ -51,12 +51,12 @@ terraform {
 
     google = {
       source  = "hashicorp/google"
-      version = "= 4.63.1"
+      version = "= 4.72.0"
     }
 
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "= 4.63.1"
+      version = "= 4.72.0"
     }
   }
 }

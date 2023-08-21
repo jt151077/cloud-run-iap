@@ -88,26 +88,6 @@ resource "google_compute_url_map" "default" {
   project         = var.project_id
   name            = "${var.project_id}-url-map"
   default_service = google_compute_backend_service.run-backend-srv.self_link
-
-  host_rule {
-    hosts        = [var.domain]
-    path_matcher = var.path_matcher
-  }
-
-  path_matcher {
-    name            = var.path_matcher
-    default_service = google_compute_backend_service.run-backend-srv.self_link
-
-    path_rule {
-      paths   = ["/run", "/run/*"]
-      service = google_compute_backend_service.run-backend-srv.self_link
-      route_action {
-        url_rewrite {
-          path_prefix_rewrite = "/"
-        }
-      }
-    }
-  }
 }
 
 resource "google_compute_url_map" "https_redirect" {
@@ -203,7 +183,9 @@ resource "google_iap_web_backend_service_iam_binding" "run-binding" {
   project             = var.project_id
   web_backend_service = google_compute_backend_service.run-backend-srv.name
   role                = "roles/iap.httpsResourceAccessor"
-  members             = var.iap_authorised_users
+  members = [
+    "user:${local.iap_brand_support_email}",
+  ]
 }
 
 output "lb_external_ip" {
