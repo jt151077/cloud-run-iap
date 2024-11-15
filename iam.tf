@@ -31,11 +31,12 @@ resource "google_project_iam_member" "run_logs_writer" {
   member  = "serviceAccount:${google_service_account.cloudrun_service_account.email}"
 }
 
-resource "google_project_iam_binding" "iap-sa-binding" {
-  project = var.project_id
-  role    = "roles/run.invoker"
-
+resource "google_cloud_run_service_iam_binding" "unauthorised_access" {
+  location = var.project_default_region
+  project  = var.project_id
+  service  = google_cloud_run_service.run.name
+  role     = "roles/run.invoker"
   members = [
-    "serviceAccount:service-${var.project_nmr}@gcp-sa-iap.iam.gserviceaccount.com"
+    "allUsers"
   ]
 }

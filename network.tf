@@ -88,32 +88,33 @@ resource "google_compute_global_address" "default" {
   ip_version = "IPV4"
 }
 
-resource "google_iap_brand" "project_brand" {
-  support_email     = var.iap_brand_support_email
-  application_title = "Cloud IAP protected Application"
-  project           = var.project_nmr
+output "lb_external_ip" {
+  value = google_compute_global_address.default.address
 }
 
-resource "google_iap_client" "project_client" {
-  depends_on = [
-    google_iap_brand.project_brand
-  ]
-  display_name = "LB Client"
-  brand        = google_iap_brand.project_brand.name
-}
-
-resource "google_iap_web_backend_service_iam_binding" "run-binding" {
+resource "google_monitoring_uptime_check_config" "status_code" {
   depends_on = [
     google_compute_backend_service.run-backend-srv
   ]
-  project             = var.project_id
-  web_backend_service = google_compute_backend_service.run-backend-srv.name
-  role                = "roles/iap.httpsResourceAccessor"
-  members = [
-    "user:${local.iap_brand_support_email}",
-  ]
-}
 
-output "lb_external_ip" {
-  value = google_compute_global_address.default.address
+  project      = var.project_id
+  display_name = "https-uptime-check"
+  timeout      = "60s"
+
+  http_check {
+    port           = "443"
+    request_method = "GET"
+    use_ssl = true
+    validate_ssl = true
+  }
+
+  monitored_resource {
+    type = "uptime_url"
+    labels = {
+      project_id = var.project_id
+      host       = var.domain
+    }
+  }
+
+  checker_type = "STATIC_IP_CHECKERS"
 }
