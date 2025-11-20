@@ -34,4 +34,3 @@ override.tf.json
 # example: *tfplan*
 
 cmds.txt
-terraform.tfvars.json
